@@ -31,7 +31,7 @@ RUN echo "deb http://deb.debian.org/debian jessie-backports main contrib non-fre
 # Install Composer
 ########################
 
-ARG COMPOSER_VERSION=1.7.2
+ARG COMPOSER_VERSION=1.8.6
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
@@ -43,13 +43,13 @@ RUN docker-php-ext-install zip
 RUN docker-php-ext-install gd
 
 RUN set -ex \
-    && curl -s -f -L -o /tmp/installer.php https://raw.githubusercontent.com/composer/getcomposer.org/877cb10b101957ef8bbb9d196f711dbb8a011bb4/web/installer \
+    && curl -s -f -L -o /tmp/installer.php https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer \
     && php -r " \
-        if (!hash_file('SHA384', '/tmp/installer.php') === '93b54496392c062774670ac18b134c3b3a95e5a5e5c8f1a9f115f203b75bf9a129d5daa8ba6a13e2cc8a1da0806388a8') { \
-            unlink('/tmp/installer.php'); \
-            echo 'Integrity check failed, installer is either corrupt or worse.' . PHP_EOL; \
-            exit(1); \
-        }" \
+    if (!hash_file('SHA384', '/tmp/installer.php') === '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5') { \
+    unlink('/tmp/installer.php'); \
+    echo 'Integrity check failed, installer is either corrupt or worse.' . PHP_EOL; \
+    exit(1); \
+    }" \
     && php /tmp/installer.php --no-ansi --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
     && composer --ansi --version --no-interaction \
     && rm -rf /tmp/* /tmp/.htaccess
