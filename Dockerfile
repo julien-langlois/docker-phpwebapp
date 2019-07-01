@@ -1,5 +1,5 @@
-ARG PHP_VERSION=7.1
-FROM php:${PHP_VERSION}-cli-jessie
+ARG PHP_VERSION=7.2
+FROM php:${PHP_VERSION}-cli-stretch
 
 LABEL maintainer="Julien Langlois"
 
@@ -9,9 +9,8 @@ ENV HOME /tmp
 # Install common tools
 ########################
 
-RUN echo "deb http://deb.debian.org/debian jessie-backports main contrib non-free" >> /etc/apt/sources.list.d/jessie-backports.list && \
-    echo "deb http://deb.debian.org/debian jessie-backports-sloppy main contrib non-free" >> /etc/apt/sources.list.d/jessie-backports.list && \
-    apt-get update && apt-get -y -t jessie-backports install \
+RUN echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/sources.list.d/backports.list && \
+    apt-get update && apt-get -y -t stretch-backports install \
     curl \
     git \
     subversion \
@@ -59,7 +58,7 @@ RUN set -ex \
 ########################
 
 ARG PHPUNIT_VERSION=^7.0
-ARG PHPCS_VERSION=^3.3
+ARG PHPCS_VERSION=^3.4
 ARG PHPMD_VERSION=^2.6
 
 RUN composer global require phpunit/phpunit ${PHPUNIT_VERSION} && composer global require squizlabs/php_codesniffer ${PHPCS_VERSION} && composer global require phpmd/phpmd ${PHPMD_VERSION}
