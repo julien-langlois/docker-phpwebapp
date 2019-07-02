@@ -13,6 +13,7 @@ RUN apt-get update -y \
     && apt-get install -y \
     software-properties-common \
     build-essential \
+    apt-utils \
     wget \
     curl \
     git \
@@ -20,6 +21,7 @@ RUN apt-get update -y \
     openssh-client \
     bash \
     unzip \
+    zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
 ########################
