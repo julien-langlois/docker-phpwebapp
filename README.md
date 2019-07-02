@@ -14,7 +14,7 @@ To build a custom image with differents versions of libraries you can use Docker
 
 ```bash
 docker build -t phpwebapp \
-    --build-arg PHP_VERSION=7.2 \
+    --build-arg PHP_VERSION=7.3 \
     --build-arg COMPOSER_VERSION=1.8.6 \
     --build-arg PHPCS_VERSION=^3.4 \
     --build-arg PHPMD_VERSION=^2.6 \
