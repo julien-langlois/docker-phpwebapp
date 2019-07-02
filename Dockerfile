@@ -63,4 +63,5 @@ ARG PHPMD_VERSION=^2.6
 
 RUN composer global require phpunit/phpunit ${PHPUNIT_VERSION} && composer global require squizlabs/php_codesniffer ${PHPCS_VERSION} && composer global require phpmd/phpmd ${PHPMD_VERSION}
 
-ENTRYPOINT ["/usr/bin/env"]
+WORKDIR /var/www/
+ENTRYPOINT ["/bin/bash"]
