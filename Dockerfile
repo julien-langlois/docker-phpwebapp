@@ -1,5 +1,5 @@
-ARG PHP_VERSION=7.2
-FROM php:${PHP_VERSION}-cli-stretch
+ARG PHP_VERSION=7.3
+FROM php:${PHP_VERSION}-cli
 
 LABEL maintainer="Julien Langlois"
 
@@ -9,22 +9,18 @@ ENV HOME /tmp
 # Install common tools
 ########################
 
-RUN echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/sources.list.d/backports.list && \
-    apt-get update && apt-get -y -t stretch-backports install \
+RUN apt-get update -y \
+    && apt-get install -y \
+    software-properties-common \
+    build-essential \
+    wget \
     curl \
     git \
-    subversion \
-    mercurial \
+    ssh \
     openssh-client \
-    openssl \
     bash \
-    zlib1g-dev \
-    build-essential \
-    libssl-dev \
-    gnupg \
     unzip \
-    zip \
-    libpng-dev
+    && rm -rf /var/lib/apt/lists/*
 
 ########################
 # Install Composer
