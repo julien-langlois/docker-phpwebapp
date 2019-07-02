@@ -23,6 +23,7 @@ RUN apt-get update -y \
     unzip \
     libzip-dev \
     zlib1g-dev \
+    libpng-dev \
     && rm -rf /var/lib/apt/lists/*
 
 ########################
