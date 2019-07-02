@@ -21,6 +21,7 @@ RUN apt-get update -y \
     openssh-client \
     bash \
     unzip \
+    libzip-dev \
     zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
