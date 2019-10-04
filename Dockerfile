@@ -40,6 +40,7 @@ RUN echo "memory_limit=-1" > "$PHP_INI_DIR/conf.d/memory-limit.ini" && echo "dat
 
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install gd
+RUN docker-php-ext-install bcmath
 
 RUN set -ex \
     && curl -s -f -L -o /tmp/installer.php https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer \
